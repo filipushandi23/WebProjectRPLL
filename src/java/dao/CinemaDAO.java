@@ -11,7 +11,6 @@ package dao;
  */
 import java.util.ArrayList;
 import model.Cinema;
-import model.Studio;
 import org.hibernate.SessionFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;

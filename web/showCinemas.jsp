@@ -25,7 +25,7 @@
             for(int i=0;i<cinemas.size();i++){
                 out.println("<tr>");
                 out.println("<td>"+(i+1)+"</td>");
-                out.println("<td>"+cinemas.get(i).getCinemaName()+"</td>");
+                out.println("<td><a href='showStudios.jsp?name="+cinemas.get(i).getCinemaName()+"'>"+cinemas.get(i).getCinemaName()+"</a></td>");
                 out.println("<td>"+cinemas.get(i).getAddress()+"</td>");
                 out.println("<td>"+cinemas.get(i).getCity()+"</td>");
                 out.println("<td>"+cinemas.get(i).getProvince()+"</td>");

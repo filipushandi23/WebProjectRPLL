@@ -106,7 +106,7 @@ public class Studio  implements java.io.Serializable {
         this.schedules = schedules;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="studio")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="studio")
     public Set<Seat> getSeats() {
         return this.seats;
     }
