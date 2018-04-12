@@ -36,6 +36,7 @@ public class User  implements java.io.Serializable {
     public User(int userId) {
         this.userId = userId;
     }
+    
     public User(int userId, String firstName, String lastName, String email, String password, String profilePicture, Customer customer, Admin admin, Cashier cashier) {
        this.userId = userId;
        this.firstName = firstName;
@@ -47,6 +48,15 @@ public class User  implements java.io.Serializable {
        this.admin = admin;
        this.cashier = cashier;
     }
+
+    public User(String firstName, String lastName, String email, String password, String profilePicture) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.profilePicture = profilePicture;
+    }
+    
    
      @Id 
 

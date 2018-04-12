@@ -9,6 +9,7 @@ import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,8 @@ import model.User;
  *
  * @author Filipus
  */
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "registerServlet", urlPatterns = {"/registerServlet"})
+public class registerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,10 @@ public class loginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet loginServlet</title>");            
+            out.println("<title>Servlet registerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet loginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet registerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,18 +75,17 @@ public class loginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        PrintWriter out = response.getWriter();
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String confirm = request.getParameter("confirm");
+        String profile_picture = "contoh.jpg";request.getParameter("profile_picture");
         
-        out.println("Email : "+email+" password: "+password);
-        
-        User u = new UserDAO().login(email, password);
-        if(u != null){
-            out.println("Login sukses, welcome "+u.getFirstName());
-        }
-        else{
-            out.println("Login gagal");
+        if(password.equals(confirm)){
+            if(new UserDAO().insertUser(new User(firstName, lastName, email, password, profile_picture))){
+                
+            }
         }
     }
 

@@ -5,8 +5,8 @@
  */
 package dao;
 
-import static dao.MovieDAO.factory;
-import model.Movie;
+import java.util.ArrayList;
+import model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,11 +17,11 @@ import org.hibernate.cfg.Configuration;
  *
  * @author Filipus
  */
-public class CustomerDAO {
+public class UserDAO {
 
     public static SessionFactory factory;
 
-    public CustomerDAO() {
+    public UserDAO() {
         try {
             factory = new Configuration().configure().buildSessionFactory();
         } catch (Exception e) {
@@ -30,12 +30,12 @@ public class CustomerDAO {
         }
     }
     
-    public boolean insertMovie(Movie m){
+    public boolean insertUser(User u){
         boolean result=true;
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         try{
-            session.save(m);
+            session.save(u);
             tx.commit();
         }catch(Exception e){
             e.printStackTrace();
@@ -45,7 +45,20 @@ public class CustomerDAO {
         return result;
     }
     
-    public boolean updateMovie(int id, String title, String synopsis, double rating, int duration, String poster, int status){
+    public User login(String email, String password){
+        Session session = factory.openSession();
+        User result = null;
+        Transaction tx = session.beginTransaction();
+        Query q = session.createQuery("from User where email = :email and password = :password");
+        q.setParameter("email", email);
+        q.setParameter("password", password);
+        result = (User) q.uniqueResult();
+        //tx.commit();
+        session.close();
+        return result;
+    }
+    
+    public boolean updateUser(int id, String title, String synopsis, double rating, int duration, String poster, int status){
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         Query q = session.createQuery("Update Movie set title = :ttl, synopsis = :syn, rating = :rtg, "
