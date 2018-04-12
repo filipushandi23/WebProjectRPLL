@@ -20,7 +20,7 @@
         <property name="colCapacity" type="java.lang.Integer">
             <column name="col_capacity" />
         </property>
-        <set name="schedules" table="schedule" inverse="true" lazy="true" fetch="select">
+        <set name="schedules" table="schedule" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="studio_number" not-null="true">
                     <comment>PK,FK Schedule</comment>
@@ -28,7 +28,7 @@
             </key>
             <one-to-many class="model.Schedule" />
         </set>
-        <set name="seats" table="seat" inverse="true" lazy="true" fetch="select">
+        <set name="seats" table="seat" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="studio_number" not-null="true">
                     <comment>PK,FK Seat</comment>

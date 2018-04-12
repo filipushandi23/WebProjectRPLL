@@ -21,7 +21,7 @@
             if (name != null || !name.equals("")) {
                 out.println("<h2>Seats Available for Studios : " + name + "</h2>");
                 SeatDAO seatDAO= new SeatDAO();
-                ArrayList<Seat> seatList = seatDAO.getAllSeat();
+                ArrayList<Seat> seatList = seatDAO.getSeatByStudioName(name);
                 for (int idx = 0; idx < seatList.size(); idx++) {
                     if(idx%7==0){
                         out.println("<br>");
