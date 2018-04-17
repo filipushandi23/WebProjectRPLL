@@ -57,6 +57,19 @@ public class StudioDAO {
         return result;
     }
     
+    public Studio getStudioByNumber(int studioNumber){
+        Session session = factory.openSession();
+        Studio result = null;
+        Transaction tx = session.beginTransaction();
+        
+        Query q = session.createQuery("from Studio where studioNumber = :sNum");
+        q.setParameter("sNum", studioNumber);
+        result = (Studio) q.uniqueResult();
+        tx.commit();
+        session.close();
+        return result;
+    }
+    
     public ArrayList<Studio> getStudiosByCinemaName(String cinemaName){
         ArrayList<Studio> tmp = getAllStudios();
         ArrayList<Studio> result = new ArrayList<>();

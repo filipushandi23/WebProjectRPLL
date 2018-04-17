@@ -18,22 +18,24 @@
     </head>
     <body>
         <table border="1" cellpadding="5">
-            <tr><td>Title</td><td>Poster</td><td>Duration</td></tr>
+            <tr><td>Title</td><td>Poster</td><td>Duration</td><td>Schedule</td></tr>
             <%
                 MovieDAO _movieDAO = new MovieDAO();
                 ScheduleDAO _scheduleDAO = new ScheduleDAO();
                 ArrayList<Movie> movies = _movieDAO.getAllMovie();
                 ArrayList<Schedule> schedules = new ArrayList();
 
-                for (int i = 0; i < movies.size(); i++) {
+                for (Movie movie: movies) {
                     out.println("<tr>");
-                    out.println("<td>" + movies.get(i).getTitle() + "</td>");
-                    out.println("<td><img src='" + movies.get(i).getPoster() + "' width='182px' height='268px'></td>");
-                    out.println("<td> " + movies.get(i).getDuration() + "minutes </td>");
+                    out.println("<td>" + movie.getTitle() + "</td>");
+                    out.println("<td><img src='" + movie.getPoster() + "' width='182px' height='268px'></td>");
+                    out.println("<td> " + movie.getDuration() + "minutes </td>");
                     out.println("<td><ul>");
-                    schedules = _scheduleDAO.getAll(movies.get(i).getMovieId());
-                    for (int j = 0; j < schedules.size(); j++) {
-                        out.println("<li>"+schedules.get(j).getId().getMovieStart()+"</li>");
+                    schedules = _scheduleDAO.getAll(movie.getMovieId());
+                    for (Schedule s : schedules) {
+                        out.println("<li><a href='pickSeats.jsp?m_id="+movie.getMovieId()+"&sch="+s.getId().getMovieStart()+""
+                                + "&studioNumber="+s.getStudio().getStudioNumber()+"'>" + 
+                                s.getId().getMovieStart()+"</a></li>");
                     }
                     out.println("</ul></td>");
                     out.println("</tr>");

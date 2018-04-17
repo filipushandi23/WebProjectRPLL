@@ -40,11 +40,11 @@ public class SeatDAO {
         return result;
     }
     
-    public ArrayList<Seat> getSeatByStudioName(String name){
+    public ArrayList<Seat> getSeatByStudioNumber(int studioNumber){
         ArrayList<Seat> tmp = getAllSeat();
         ArrayList<Seat> result = new ArrayList<>();
         for (Seat seat : tmp) {
-            if(seat.getStudio().getStudioName().equals("name")){
+            if(seat.getId().getStudioNumber()==studioNumber){
                 result.add(seat);
             }
         }

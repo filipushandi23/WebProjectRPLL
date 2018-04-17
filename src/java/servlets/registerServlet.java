@@ -75,17 +75,24 @@ public class registerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        PrintWriter out = response.getWriter();
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirm");
-        String profile_picture = "contoh.jpg";request.getParameter("profile_picture");
+        String profile_picture = "contoh.jpg";//request.getParameter("profile_picture");
         
         if(password.equals(confirm)){
             if(new UserDAO().insertUser(new User(firstName, lastName, email, password, profile_picture))){
-                
+                response.sendRedirect("userRegister.jsp");
             }
+            else{
+                out.println("Gagal register");
+            }
+        }
+        else{
+            out.println("Password tidak sama");
         }
     }
 
