@@ -4,11 +4,11 @@
     Author     : Filipus
 --%>
 
+<%@page import="dao.ScheduleDAO"%>
+<%@page import="model.Movie"%>
 <%@page import="model.Schedule"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Movie"%>
 <%@page import="dao.MovieDAO"%>
-<%@page import="dao.ScheduleDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
